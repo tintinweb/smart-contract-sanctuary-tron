@@ -54,7 +54,7 @@ def main():
             fpath = os.path.join(dst, "%s_%s.%s" % (
                 c["address"].replace("0x", ""), 
                 str(c['name']).replace("\\", "_").replace("/", "_"),
-                "vy" if "vyper:" in c["compiler"].lower() else "sol"
+                "vy" if "vyper:" in c.get("compiler","").lower() else "sol"
                 )
             )
             if not overwrite and os.path.exists(fpath):
