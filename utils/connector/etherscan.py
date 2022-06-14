@@ -197,7 +197,7 @@ class TronScanApi(object):
         self.session = UserAgent(baseurl=baseurl, proxies=proxies)
 
     @retry(Exception, delay=1, backoff=2, max_delay=10, tries=5, jitter=(1,4), logger=logger)
-    def _request_contract_list(self, start, amount=1000):
+    def _request_contract_list(self, start, amount=50):
         resp = self.session.get("api/contracts?count=true&limit=%s&confirm=0&start=%s&verified-only=true&open-source-only=false&sort=-verify_time&search="%(amount, start))
         return resp.json()
 
